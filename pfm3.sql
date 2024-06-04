@@ -85,7 +85,20 @@ INSERT INTO product (name, description, price, quantity_in_stock, minimum_quanti
 ("Alface", "Alface fresca", 1.50, 200, 30, '2024-05-03', '123456789013', 2),
 ("Leite", "Leite integral", 4.00, 150, 50, '2024-05-05', '123456789014', 3),
 ("Carne Bovina", "Carne bovina fresca", 25.00, 50, 10, '2024-05-07', '123456789015', 4),
-("Cerveja", "Cerveja Brahma", 3.50, 300, 50, '2024-05-09', '123456789016', 5);
+("Cerveja", "Cerveja Brahma", 3.50, 300, 50, '2024-05-09', '123456789016', 5),
+("Maçã", "Maçã Gala", 3.00, 300, 40, '2024-06-01', '123456789017', 1),
+("Manga", "Manga de Qualidade", 5.25, 170, 50, '2024-05-27', '123456789018', 1),
+("Laranja", "Laranja-pera docinha", 2.50, 100, 20, '2024-05-01', '123456789019', 1),
+("Tomate", "Tomate Italiano", 2.45, 210, 50, '2024-06-03', '123456789020', 2),
+("Pepino", "Pepino Japonês", 1.00, 120, 40, '2024-05-25', '123456789021', 2),
+("Queijo Mussarela", "Queijo fresco utilizado em diversas preparações culinárias", 11.00, 230, 75, '2024-05-17', '123456789022', 3),
+("Manteiga", "Produto lácteo feito do creme de leite batido", 6.00, 100, 45, '2024-05-27', '123456789023', 3),
+("Carne Suína", "Carne de Porco", 15.00, 75, 10, '2024-05-17', '123456789024', 4),
+("Carne de Frango", "Frangos de Alta Granja", 10.00, 60, 20, '2024-05-30', '123456789025', 4),
+("Refrigerante", "Coca-Cola", 7.99, 500, 75, '2024-06-04', '123456789026', 5),
+("Suco", "Delvale", 4.50, 360, 50, '2024-06-02', '123456789027', 5),
+("Água", "Água mineral das nascentes da Serra do Mar", 2.99, 700, 150, '2024-06-05', '123456789028', 5)
+;
 select * from product;
 
 -- Insert data into client table
@@ -123,3 +136,5 @@ INSERT INTO purchase (date, amount, unit_price, total, supplier_id, product_id) 
 ('2024-05-04', 20, 22.00, 440.00, 4, 4),
 ('2024-05-05', 200, 2.80, 560.00, 5, 5);
 select * from purchase;
+
+
