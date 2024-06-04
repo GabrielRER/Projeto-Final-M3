@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS category (
 ID INTEGER PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR (150),
 description TEXT,
-cod VARCHAR (50)
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 -- _________________________________
 -- TABLE Venda: 0.4 ou 1.2
@@ -70,12 +70,12 @@ ID INTEGER PRIMARY KEY AUTO_INCREMENT,
 
 -- Table Category:
 -- Insert data into category table
-INSERT INTO category (name, description, cod) VALUES 
-("Frutas", "Frutas tipicas de áreas frias", "877.857"),
-("Vegetais", "Vegetais variados e frescos", "312.684"),
-("Laticínios", "Produtos derivados do leite", "429.112"),
-("Carnes", "Carnes frescas e congeladas", "293.478"),
-("Bebidas", "Bebidas alcoólicas e não alcoólicas", "597.321");
+INSERT INTO category (name, description) VALUES 
+("Frutas", "Frutas tipicas de áreas frias"),
+("Vegetais", "Vegetais variados e frescos"),
+("Laticínios", "Produtos derivados do leite"),
+("Carnes", "Carnes frescas e congeladas"),
+("Bebidas", "Bebidas alcoólicas e não alcoólicas");
 select * from category;
 
 
