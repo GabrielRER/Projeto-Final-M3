@@ -219,7 +219,7 @@ select * from purchase;
 -- Qual produto mais vendido?
 SELECT product.id AS id_produto,
 product.name AS nome_produto,
-COUNT(sale.product_id) AS quantidade_vendas
+SUM(sale.amount) AS quantidade_vendas
 FROM product
 LEFT JOIN sale ON product.id = sale.product_id
 GROUP BY product.id, product.name
@@ -261,12 +261,11 @@ product.price AS valor_de_revenda,
 FROM product
 JOIN purchase ON product.id = purchase.product_id;
 
--- Valor Bruto Vendido
-SELECT SUM(total) AS valor_bruto_vendido
-FROM sale;
-
--- Valor Liquido Vendido
-SELECT SUM((sale.unit_price - purchase.unit_price) * sale.amount) AS total_liquido
+-- Valor em Vendas
+SELECT SUM(sale.total) AS total_bruto_vendido,
+SUM((sale.unit_price - purchase.unit_price) * sale.amount) AS total_liquido_vendido
 FROM sale
 JOIN purchase ON sale.product_id = purchase.product_id;
+
+
 
