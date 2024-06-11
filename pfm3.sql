@@ -291,4 +291,45 @@ FROM sale
 GROUP BY date
 ORDER BY date DESC;
 
+-- Valor gasto por fornecedor
+SELECT 
+    supplier.name AS supplier_name,
+    SUM(purchase.total) AS amount_spent
+FROM 
+    supplier
+JOIN 
+    purchase ON supplier.id = purchase.supplier_id
+GROUP BY 
+    supplier.name
+ORDER BY 
+    supplier_name ASC;
+    
+-- Quantidade comprada por fornecedor
+SELECT 
+    supplier.name AS supplier_name,
+    SUM(purchase.amount) AS total_quantity_purchased
+FROM 
+    supplier
+JOIN 
+    purchase ON supplier.id = purchase.supplier_id
+GROUP BY 
+    supplier.name
+ORDER BY 
+    supplier_name ASC;
 
+-- Produtos mais comprados por fornecedor
+SELECT 
+    supplier.name AS supplier_name,
+    product.name AS product_name,
+    SUM(purchase.amount) AS total_quantity_purchased
+FROM 
+    supplier
+JOIN 
+    purchase ON supplier.id = purchase.supplier_id
+JOIN 
+    product ON product.id = purchase.product_id
+GROUP BY 
+    supplier.name,
+    product.name
+ORDER BY
+    total_quantity_purchased ASC;
