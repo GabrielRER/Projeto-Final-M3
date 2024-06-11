@@ -267,5 +267,28 @@ SUM((sale.unit_price - purchase.unit_price) * sale.amount) AS total_liquido_vend
 FROM sale
 JOIN purchase ON sale.product_id = purchase.product_id;
 
+-- Produtos abaixo da quantidade mínima em estoque
+SELECT id AS id_produto, name AS nome_produto, quantity_in_stock AS quantidade_em_estoque, minimum_quantity AS quantidade_minima
+FROM product
+WHERE quantity_in_stock < minimum_quantity;
+
+-- Fornecedores que mais forneceram produtos
+SELECT supplier.id AS id_fornecedor, supplier.name AS nome_fornecedor, SUM(purchase.amount) AS quantidade_fornecida
+FROM supplier
+JOIN purchase ON supplier.id = purchase.supplier_id
+GROUP BY supplier.id, supplier.name
+ORDER BY quantidade_fornecida DESC;
+
+-- Produtos comprados mais recentemente
+SELECT product.id AS id_produto, product.name AS nome_produto, purchase.date AS data_ultima_compra
+FROM product
+JOIN purchase ON product.id = purchase.product_id
+ORDER BY purchase.date DESC;
+
+-- Total de vendas por dia
+SELECT date AS data_venda, SUM(total) AS valor_total_vendas
+FROM sale
+GROUP BY date
+ORDER BY date DESC;
 
 
