@@ -216,7 +216,7 @@ select * from purchase;
 
 -- Consultas:
 
--- Qual produto mais vendido?
+-- Quantidade Vendida de Produtos
 SELECT product.id AS id_produto,
 product.name AS nome_produto,
 SUM(sale.amount) AS quantidade_vendas
@@ -225,7 +225,7 @@ LEFT JOIN sale ON product.id = sale.product_id
 GROUP BY product.id, product.name
 ORDER BY quantidade_vendas DESC;
 
--- Qual cliente gastou mais?
+-- Valor Gasto por Cliente
 
 SELECT client.id AS id_cliente,
 client.name AS nome_cliente,
@@ -235,7 +235,7 @@ LEFT JOIN sale ON client.id = sale.client_id
 GROUP BY client.id, client.name
 ORDER BY valor_gasto DESC;
 
--- Qual o valor total de cada produto temos em estoque?
+-- Valor de Produtos em Estoque
 SELECT id, 
 name, 
 quantity_in_stock, 
@@ -291,45 +291,78 @@ FROM sale
 GROUP BY date
 ORDER BY date DESC;
 
--- Valor gasto por fornecedor
-SELECT 
-    supplier.name AS supplier_name,
-    SUM(purchase.total) AS amount_spent
-FROM 
-    supplier
-JOIN 
-    purchase ON supplier.id = purchase.supplier_id
-GROUP BY 
-    supplier.name
-ORDER BY 
-    supplier_name ASC;
-    
--- Quantidade comprada por fornecedor
-SELECT 
-    supplier.name AS supplier_name,
-    SUM(purchase.amount) AS total_quantity_purchased
-FROM 
-    supplier
-JOIN 
-    purchase ON supplier.id = purchase.supplier_id
-GROUP BY 
-    supplier.name
-ORDER BY 
-    supplier_name ASC;
+-- Vendas por Categoria
+SELECT category.name AS nome_categoria,
+SUM(sale.total) AS total_vendido
+FROM sale
+JOIN product ON sale.product_id = product.id
+JOIN category ON product.category_id = category.id
+GROUP BY nome_categoria
+ORDER BY total_vendido DESC;
 
--- Produtos mais comprados por fornecedor
+-- Vendas por produto
+SELECT product.name AS produto,
+SUM(sale.total) AS total_vendido
+FROM sale
+JOIN product ON sale.product_id = product.id
+GROUP BY produto
+ORDER BY total_vendido DESC;
+
+-- Total Gasto por Fornecedor
+SELECT supplier.name AS fornecedor,
+SUM(purchase.total) AS total_comprado
+FROM purchase
+JOIN supplier ON purchase.supplier_id = supplier.id
+GROUP BY fornecedor
+ORDER BY total_comprado;
+
+-- Quantidade de Produtos por Fornecedor
+SELECT supplier.name AS fornecedor, 
+SUM(purchase.amount) AS produtos_comprados
+FROM purchase 
+JOIN supplier ON purchase.supplier_id = supplier.ID
+GROUP BY supplier.name
+ORDER BY produtos_comprados DESC;
+
+-- Quantidade de Cada Produto por Fornecedor
+SELECT supplier.name AS fornecedor, 
+product.name AS produto, 
+SUM(purchase.amount) AS quantidade_comprada
+FROM purchase
+JOIN supplier ON purchase.supplier_id = supplier.id
+JOIN product ON purchase.product_id = product.id
+GROUP BY supplier.name, product.name
+ORDER BY supplier.name, product.name;
+
+-- Valor em Produtos por Categoria
+SELECT category.name AS categoria, 
+SUM(product.price * product.quantity_in_stock) AS valor_total
+FROM product 
+JOIN category ON product.category_id = category.id
+GROUP BY category.name
+ORDER BY valor_total DESC;
+
+-- Média por Cliente gasto por dia
+SELECT sale.date, ROUND(AVG(sale.total),2) AS média_por_cliente
+FROM sale
+GROUP BY sale.date
+ORDER BY sale.date;
+
+-- Ticket Médio por Produto
 SELECT 
-    supplier.name AS supplier_name,
-    product.name AS product_name,
-    SUM(purchase.amount) AS total_quantity_purchased
-FROM 
-    supplier
-JOIN 
-    purchase ON supplier.id = purchase.supplier_id
-JOIN 
-    product ON product.id = purchase.product_id
-GROUP BY 
-    supplier.name,
-    product.name
-ORDER BY
-    total_quantity_purchased ASC;
+product.name AS produto,
+ROUND(AVG(sale.total / sale.amount), 2) AS ticket_medio
+FROM sale
+JOIN product ON sale.product_id = product.id
+GROUP BY product.name
+ORDER BY ticket_medio DESC;
+
+-- Ticket Médio por Categoria
+SELECT 
+category.name AS categoria,
+ROUND(AVG(sale.total / sale.amount), 2) AS ticket_medio
+FROM sale
+JOIN product ON sale.product_id = product.id
+JOIN category ON product.category_id = category.id
+GROUP BY category.name
+ORDER BY ticket_medio DESC;
