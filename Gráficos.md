@@ -1,0 +1,1 @@
+[Planilha de Gráficos](https://docs.google.com/spreadsheets/d/1S-FsHCVScyO28ZneaGD4smXRs-kt_mboMvvN55T0Eo4/edit?usp=sharing)
