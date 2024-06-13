@@ -7,5 +7,5 @@
   border: none;
   border-radius: 5px;
   text-decoration: none;
-  text-align: center;"
+  text-align: center;">
 Planilha de Gráficos</a>
