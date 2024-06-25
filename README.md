@@ -18,8 +18,8 @@ Esta tabela armazena informações sobre os produtos no inventário.
 | Coluna               | Tipo         | Descrição                                        |
 |----------------------|--------------|--------------------------------------------------|
 | ID                   | INTEGER      | Identificador único do produto (chave primária). |
-| name                 | VARCHAR(150) | Nome do produto.                                 |
-| description          | TEXT         | Descrição do produto.                            |
+| name                 | VARCHAR(100) | Nome do produto.                                 |
+| description          | TEXT(100)    | Descrição do produto.                            |
 | price                | DECIMAL(10,2)| Preço do produto.                                |
 | quantity_in_stock    | INTEGER      | Quantidade em estoque.                           |
 | minimum_quantity     | INTEGER      | Quantidade mínima necessária em estoque.         |
