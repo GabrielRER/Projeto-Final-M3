@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS inventory_management;
 USE inventory_management;
+-- 
 
 -- TABLE PRODUTO: 0.2
 CREATE TABLE IF NOT EXISTS product (
