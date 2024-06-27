@@ -1,81 +1,54 @@
-# Inventory Management System
 
-## Descrição do Projeto
 
-Este projeto é um sistema de gerenciamento de inventário desenvolvido em SQL. Ele permite gerenciar produtos, categorias e outros aspectos relacionados ao controle de estoque de uma empresa.
+# Projeto-Final-M3
 
-## Tecnologias Utilizadas
+This repository contains the final project for Module 3, featuring a SQL script for database creation and management.
 
-- MySQL
-- SQL
+## Project Overview
 
-## Estrutura do Banco de Dados
+The SQL script in this repository is designed to set up and manage a database. It includes creating tables, inserting initial data, and implementing constraints to ensure data integrity.
 
-### Tabela: `product`
+## Features
 
-Esta tabela armazena informações sobre os produtos no inventário.
+- Table creation for key entities
+- Sample data insertion
+- Implementation of primary and foreign key constraints
+- Index creation for performance optimization
 
-| Coluna               | Tipo         | Descrição                                        |
-|----------------------|--------------|--------------------------------------------------|
-| ID                   | INTEGER      | Identificador único do produto (chave primária). |
-| name                 | VARCHAR(100) | Nome do produto.                                 |
-| description          | TEXT(100)    | Descrição do produto.                            |
-| price                | DECIMAL(10,2)| Preço do produto.                                |
-| quantity_in_stock    | INTEGER      | Quantidade em estoque.                           |
-| minimum_quantity     | INTEGER      | Quantidade mínima necessária em estoque.         |
-| last_purchase_date   | DATE         | Data da última compra.                           |
-| bar_code             | VARCHAR(50)  | Código de barras do produto.                     |
-| category_id          | INTEGER      | Referência à categoria do produto (chave estrangeira). |
+## Getting Started
 
-### Tabela: `category`
+### Prerequisites
 
-Esta tabela armazena informações sobre as categorias dos produtos.
+- SQL Server or any compatible SQL database management system
 
-| Coluna | Tipo     | Descrição                                        |
-|--------|----------|--------------------------------------------------|
-| ID     | INTEGER  | Identificador único da categoria (chave primária).|
-| name   | VARCHAR(100) | Nome da categoria.                           |
+### Installation
 
-## Funcionalidades Principais
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/GabrielRER/Projeto-Final-M3.git
+    ```
 
-- Adicionar, editar e remover produtos.
-- Adicionar, editar e remover categorias.
-- Consultar produtos por categoria.
-- Verificar quantidade mínima de estoque.
+2. Open the `scriptSql.sql` file in your SQL management tool.
 
-## Instruções de Instalação e Execução
+3. Execute the script to set up the database.
 
-1. Certifique-se de ter o MySQL instalado em seu sistema.
-2. Crie um banco de dados chamado `inventory_management`:
-   ```sql
-   CREATE DATABASE IF NOT EXISTS inventory_management;
-   ```
-3. Execute o script SQL fornecido (`pfm3.sql`) para criar as tabelas e inserir os dados necessários:
-   ```sql
-   USE inventory_management;
-   SOURCE /caminho/para/pfm3.sql;
-   ```
-4. O banco de dados está pronto para ser utilizado.
+## Usage
 
-## Exemplos de Consultas SQL
+- Modify the script as needed to fit your database requirements.
+- Use the provided queries to interact with and manage the database.
 
-### 1. Inserir um novo produto
-```sql
-INSERT INTO product (name, description, price, quantity_in_stock, minimum_quantity, last_purchase_date, bar_code, category_id)
-VALUES ('Produto Exemplo', 'Descrição do produto exemplo', 99.99, 50, 10, '2023-01-01', '1234567890123', 1);
-```
+## Contributing
 
-### 2. Consultar todos os produtos de uma determinada categoria
-```sql
-SELECT * FROM product WHERE category_id = 1;
-```
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/yourFeature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/yourFeature`).
+5. Open a pull request.
 
-### 3. Atualizar a quantidade em estoque de um produto
-```sql
-UPDATE product SET quantity_in_stock = 100 WHERE ID = 1;
-```
+## License
 
-### 4. Remover um produto
-```sql
-DELETE FROM product WHERE ID = 1;
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Thanks to all the contributors and collaborators on this projects.
